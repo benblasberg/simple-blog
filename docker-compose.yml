@@ -1,8 +1,28 @@
-version: '1'
+version: "2.4"
 services:
+  frontend:
+    build: ./blog-frontend
+    ports:
+      - "80:80"
   backend:
-    build: ./backends/spring-boot-blog
+    image: spring-boot-blog
+    ports:
+      - "8080:8080"
+    restart: on-failure
     depends_on:
-      - db
+      db:
+        condition: service_healthy
   db:
+    container_name: blog_db
     build: ./blog-database
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: "123"
+      MYSQL_DATABASE: "blog-db"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      interval: 5s
+      retries: 10
