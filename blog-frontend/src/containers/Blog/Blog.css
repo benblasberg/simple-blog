@@ -1,0 +1,36 @@
+nav {
+  background-color: navy;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+nav a {
+  color: white;
+  font-size: 20px;
+  padding: 5px;
+  margin-left: 15px;
+}
+
+nav a:link {
+  text-decoration: none;
+  color: white;
+}
+
+nav a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+nav a:active {
+  text-decoration: none;
+  color: white;
+}
+
+.user-nav {
+  color: white;
+  font-size: 20px;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: 15px;
+}
