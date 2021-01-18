@@ -1,0 +1,8 @@
+version: '1'
+services:
+  backend:
+    build: ./backends/spring-boot-blog
+    depends_on:
+      - db
+  db:
+    build: ./blog-database
