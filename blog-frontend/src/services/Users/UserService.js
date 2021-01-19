@@ -18,6 +18,10 @@ class UserService {
   getUsers() {
     return this.users;
   }
+
+  getUserById(id) {
+    return this.users.filter(user => user.id === id)[0];
+  }
 }
 
 const instance = new UserService();

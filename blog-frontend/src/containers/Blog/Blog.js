@@ -14,11 +14,14 @@ export default function Blog() {
   const [user, setUser] = useState(users[0]);
 
   const handleSelectUser = event => {
-    setUser(event.target.value);
-    AuthUtil.setUser(user);
+    console.log(`Setting user with id ${event.target.value} to currentUser`);
+    const newUser = UserService.getUserById(parseInt(event.target.value));
+    setUser(newUser);
+    AuthUtil.setUser(newUser);
   };
 
   if (!AuthUtil.getCurrentUser()) {
+    console.log(`Resetting current user to ${JSON.stringify(user)}`);
     AuthUtil.setUser(user);
   }
 
@@ -32,7 +35,7 @@ export default function Blog() {
           <span>Signed in as: </span>
           <select value={user} onChange={handleSelectUser}>
             {users.map(user => (
-              <option key={user.id} value={user.name}>
+              <option key={user.id} value={user.id}>
                 {user.name}
               </option>
             ))}
